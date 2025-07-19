@@ -1,0 +1,118 @@
+{% extends 'custom_admin/base.html' %}
+
+{% block title %}{{ product.name }} - NICKY COSMETICS Admin{% endblock %}
+{% block page_title %}Product Details{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="table-card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-eye me-2"></i>Product Details
+                </h5>
+            </div>
+            
+            <div class="card-body">
+                <div class="row">
+                    <!-- Product Images -->
+                    <div class="col-md-4 mb-4">
+                        <!-- Main Image -->
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" 
+                                 class="img-fluid rounded mb-3" style="max-width: 100%;">
+                        {% else %}
+                            <div class="bg-light rounded d-flex align-items-center justify-content-center mb-3" 
+                                 style="height: 200px;">
+                                <i class="fas fa-image fa-3x text-muted"></i>
+                            </div>
+                        {% endif %}
+                        
+
+                    </div>
+                    
+                    <!-- Product Information -->
+                    <div class="col-md-8">
+                        <h4 class="mb-3">{{ product.name }}</h4>
+                        
+                        <div class="row mb-3">
+                            <div class="col-sm-6">
+                                <strong>Category:</strong>
+                                <span class="badge bg-secondary ms-2">{{ product.category|title }}</span>
+                            </div>
+                            <div class="col-sm-6">
+                                <strong>Status:</strong>
+                                {% if product.available %}
+                                    <span class="badge bg-success ms-2">Available</span>
+                                {% else %}
+                                    <span class="badge bg-danger ms-2">Unavailable</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-sm-6">
+                                <strong>Price:</strong>
+                                {% if product.discount_price %}
+                                    <div class="ms-2">
+                                        <span class="text-decoration-line-through text-muted">₦{{ product.price }}</span>
+                                        <br>
+                                        <span class="text-danger fw-bold">₦{{ product.discount_price }}</span>
+                                        <small class="badge bg-danger ms-1">
+                                            -{{ product.get_discount_percentage }}% OFF
+                                        </small>
+                                    </div>
+                                {% else %}
+                                    <span class="text-primary fw-bold ms-2">₦{{ product.price }}</span>
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-6">
+                                <strong>Stock:</strong>
+                                {% if product.stock > 10 %}
+                                    <span class="badge bg-success ms-2">{{ product.stock }}</span>
+                                {% elif product.stock > 0 %}
+                                    <span class="badge bg-warning ms-2">{{ product.stock }}</span>
+                                {% else %}
+                                    <span class="badge bg-danger ms-2">Out of Stock</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <strong>Description:</strong>
+                            <p class="mt-2 text-muted">{{ product.description|linebreaks }}</p>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <strong>Created:</strong>
+                            <span class="text-muted ms-2">{{ product.created_at|date:"F d, Y at H:i" }}</span>
+                        </div>
+                        
+                        {% if product.updated_at != product.created_at %}
+                            <div class="mb-4">
+                                <strong>Last Updated:</strong>
+                                <span class="text-muted ms-2">{{ product.updated_at|date:"F d, Y at H:i" }}</span>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="{% url 'custom_admin:products' %}" class="btn btn-secondary btn-admin">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Products
+                    </a>
+                    <div>
+                        <a href="{% url 'custom_admin:edit_product' product.id %}" class="btn btn-warning btn-admin me-2">
+                            <i class="fas fa-edit me-2"></i>Edit Product
+                        </a>
+                        <a href="{% url 'products:product_detail' product.id %}" class="btn btn-info btn-admin" target="_blank">
+                            <i class="fas fa-external-link-alt me-2"></i>View on Site
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
