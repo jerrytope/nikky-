@@ -1,0 +1,1 @@
+web: gunicorn NICKY_COSMETICS.wsgi
