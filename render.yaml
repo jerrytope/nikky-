@@ -5,7 +5,6 @@ services:
     plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn NICKY_COSMETICS.wsgi:application
-    runtime: python3  # ✅ FIXED: Must be a string like "python3", NOT a nested map
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: NICKY_COSMETICS.settings
