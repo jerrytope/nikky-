@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: nikky
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn NICKY_COSMETICS.wsgi:application
+    runtime:
+      python_version: 3.12.3
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: NICKY_COSMETICS.settings
+      - key: SECRET_KEY
+        value: your-secret-key
