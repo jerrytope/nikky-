@@ -29,7 +29,7 @@ SECRET_KEY = config('SECRET_KEY', default="django-insecure-1a2u!a$o*gno%r^4k*6xz
 DEBUG = False
 # ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lambda v: [s.strip() for s in v.split(',')])
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["nikky-production.up.railway.app"]
 # Application definition
 
 INSTALLED_APPS = [
