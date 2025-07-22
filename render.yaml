@@ -11,4 +11,4 @@ services:
       - key: DJANGO_SETTINGS_MODULE
         value: NICKY_COSMETICS.settings
       - key: SECRET_KEY
-        value: your-secret-key
+        value: django-insecure-1a2u!a$o*gno%r^4k*6xz@j3sg0ci%$s9=cubhvx1-)+o5*te@")
