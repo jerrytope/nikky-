@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     "custom_admin",
 ]
 CSRF_TRUSTED_ORIGINS = ['https://nikky-production.up.railway.app']
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
