@@ -3,7 +3,9 @@ services:
     name: nikky
     env: python
     plan: free
-    buildCommand: pip install -r requirements.txt
+    buildCommand: |
+      echo "Using Python $(python --version)"
+      pip install -r requirements.txt
     startCommand: gunicorn NICKY_COSMETICS.wsgi:application
     envVars:
       - key: DJANGO_SETTINGS_MODULE
